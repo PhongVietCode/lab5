@@ -1,0 +1,6 @@
+../Core/Src/Task_Container.c:9:6:initTask	8	static
+../Core/Src/Task_Container.c:16:6:LED_Blink_500ms	8	static
+../Core/Src/Task_Container.c:19:6:LED_Blink_1000ms	8	static
+../Core/Src/Task_Container.c:22:6:LED_Blink_1500ms	8	static
+../Core/Src/Task_Container.c:25:6:LED_Blink_2000ms	8	static
+../Core/Src/Task_Container.c:28:6:LED_Blink_2500ms	8	static
