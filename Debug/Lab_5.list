@@ -39,13 +39,13 @@ Idx Name          Size      VMA       LMA       File off  Algn
                   CONTENTS, READONLY, DEBUGGING, OCTETS
  17 .debug_macro  0001849a  00000000  00000000  00031242  2**0
                   CONTENTS, READONLY, DEBUGGING, OCTETS
- 18 .debug_line   0000ff79  00000000  00000000  000496dc  2**0
+ 18 .debug_line   00010005  00000000  00000000  000496dc  2**0
                   CONTENTS, READONLY, DEBUGGING, OCTETS
- 19 .debug_str    0008d240  00000000  00000000  00059655  2**0
+ 19 .debug_str    0008d240  00000000  00000000  000596e1  2**0
                   CONTENTS, READONLY, DEBUGGING, OCTETS
- 20 .debug_frame  00003e0c  00000000  00000000  000e6898  2**2
+ 20 .debug_frame  00003e0c  00000000  00000000  000e6924  2**2
                   CONTENTS, READONLY, DEBUGGING, OCTETS
- 21 .debug_line_str 0000006d  00000000  00000000  000ea6a4  2**0
+ 21 .debug_line_str 0000006d  00000000  00000000  000ea730  2**0
                   CONTENTS, READONLY, DEBUGGING, OCTETS
 
 Disassembly of section .text:
@@ -629,7 +629,7 @@ uint8_t SCH_Delete_Task(uint32_t taskID){
 					}
 				}
 				// shift all the remain to left 1 position
-				for(j = taskIndex; j< SCH_MAX_TASKS;j++){
+				for(j = taskIndex; j< SCH_MAX_TASKS - 1;j++){
  8000506:	7bbb      	ldrb	r3, [r7, #14]
  8000508:	737b      	strb	r3, [r7, #13]
  800050a:	e060      	b.n	80005ce <SCH_Delete_Task+0x162>
@@ -732,12 +732,12 @@ uint8_t SCH_Delete_Task(uint32_t taskID){
  80005c2:	4403      	add	r3, r0
  80005c4:	3310      	adds	r3, #16
  80005c6:	6019      	str	r1, [r3, #0]
-				for(j = taskIndex; j< SCH_MAX_TASKS;j++){
+				for(j = taskIndex; j< SCH_MAX_TASKS - 1;j++){
  80005c8:	7b7b      	ldrb	r3, [r7, #13]
  80005ca:	3301      	adds	r3, #1
  80005cc:	737b      	strb	r3, [r7, #13]
  80005ce:	7b7b      	ldrb	r3, [r7, #13]
- 80005d0:	2b09      	cmp	r3, #9
+ 80005d0:	2b08      	cmp	r3, #8
  80005d2:	d99b      	bls.n	800050c <SCH_Delete_Task+0xa0>
 				}
 				// delete the task
@@ -1087,9 +1087,9 @@ int main(void)
  80007d8:	f7ff ff80 	bl	80006dc <SCH_Init>
   initTask();
  80007dc:	f7ff ff94 	bl	8000708 <initTask>
-  SCH_Add_Task(LED_Blink_500ms, 1, 50);
- 80007e0:	2232      	movs	r2, #50	; 0x32
- 80007e2:	2101      	movs	r1, #1
+  SCH_Add_Task(LED_Blink_500ms, 50, 0);
+ 80007e0:	2200      	movs	r2, #0
+ 80007e2:	2132      	movs	r1, #50	; 0x32
  80007e4:	480f      	ldr	r0, [pc, #60]	; (8000824 <main+0x78>)
  80007e6:	f7ff fcb1 	bl	800014c <SCH_Add_Task>
   SCH_Add_Task(LED_Blink_1000ms, 2, 100);
@@ -1107,9 +1107,9 @@ int main(void)
  8000800:	2104      	movs	r1, #4
  8000802:	480b      	ldr	r0, [pc, #44]	; (8000830 <main+0x84>)
  8000804:	f7ff fca2 	bl	800014c <SCH_Add_Task>
-  SCH_Add_Task(LED_Blink_2500ms, 250, 0);
- 8000808:	2200      	movs	r2, #0
- 800080a:	21fa      	movs	r1, #250	; 0xfa
+  SCH_Add_Task(LED_Blink_2500ms, 5, 250);
+ 8000808:	22fa      	movs	r2, #250	; 0xfa
+ 800080a:	2105      	movs	r1, #5
  800080c:	4809      	ldr	r0, [pc, #36]	; (8000834 <main+0x88>)
  800080e:	f7ff fc9d 	bl	800014c <SCH_Add_Task>
   /* Infinite loop */

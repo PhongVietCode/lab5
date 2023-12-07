@@ -92,7 +92,7 @@ uint8_t SCH_Delete_Task(uint32_t taskID){
 					}
 				}
 				// shift all the remain to left 1 position
-				for(j = taskIndex; j< SCH_MAX_TASKS;j++){
+				for(j = taskIndex; j< SCH_MAX_TASKS - 1;j++){
 					SCH_task_array[j].pTask = SCH_task_array[j+1].pTask;
 					SCH_task_array[j].Period = SCH_task_array[j+1].Period;
 					SCH_task_array[j].Delay = SCH_task_array[j+1].Delay;

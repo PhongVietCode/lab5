@@ -108,11 +108,11 @@ int main(void)
 #ifdef TASK_SCHEDULE
   SCH_Init();
   initTask();
-  SCH_Add_Task(LED_Blink_500ms, 1, 50);
+  SCH_Add_Task(LED_Blink_500ms, 50, 0);
   SCH_Add_Task(LED_Blink_1000ms, 2, 100);
   SCH_Add_Task(LED_Blink_1500ms, 3, 150);
   SCH_Add_Task(LED_Blink_2000ms, 4, 200);
-  SCH_Add_Task(LED_Blink_2500ms, 250, 0);
+  SCH_Add_Task(LED_Blink_2500ms, 5, 250);
 
 #endif
   /* USER CODE END 2 */
